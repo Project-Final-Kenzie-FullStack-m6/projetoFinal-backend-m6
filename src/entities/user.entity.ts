@@ -1,13 +1,13 @@
 import {
-    Entity, Column,
+    Entity,
+    Column,
     PrimaryGeneratedColumn,CreateDateColumn,
     UpdateDateColumn,OneToOne,BeforeUpdate,
-    BeforeInsert, JoinColumn,OneToMany
+    BeforeInsert,JoinColumn,OneToMany
 } from "typeorm";
 
 import { getRounds, hashSync } from "bcryptjs";
 import { Address } from "./address.entity";
-import { Comment } from "./comments.entity";
 import { Adversiment } from "./adversiments.entity";
 
 
@@ -22,10 +22,10 @@ export class User{
     @Column({length: 50, nullable: false, unique: true})
     email: string;
 
-    @Column({length: 32,nullable: false})
+    @Column({length: 32, nullable: false})
     password: string;
 
-    @Column({nullable: false, precision:11})
+    @Column({nullable: false})
     phone: number;
 
     @Column({nullable: false})
@@ -34,10 +34,10 @@ export class User{
     @Column({length: 255, nullable: false})
     description: string;
 
-    @Column({nullable: false, type: "boolean"})
+    @Column({nullable: false})
     isSeller: boolean;
     
-    @Column({nullable: false, type: "boolean", default: true})
+    @Column({nullable: false, default: true})
     isActive: boolean;
 
     @CreateDateColumn()
@@ -51,7 +51,7 @@ export class User{
     address: Address;
 
 
-    @OneToMany(() => Adversiment, adversiments => adversiments.user)
+    @OneToMany(() => Adversiment, (adversiments) => adversiments.user)
     adversiments: Adversiment[];
 
     @BeforeUpdate()

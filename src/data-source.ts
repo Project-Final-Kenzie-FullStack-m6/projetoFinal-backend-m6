@@ -6,7 +6,7 @@ import { Adversiment } from "./entities/adversiments.entity";
 import { Comment } from "./entities/comments.entity";
 import { Address } from "./entities/address.entity";
 import { Image } from "./entities/image.entity";
-import {initialmigration1680797633837} from "./migrations/1680797633837-initialmigration"
+import {initial1680801480184} from "./migrations/1680801480184-initial"
 
 
 const setDataSourceConfig = (): DataSourceOptions => {
@@ -17,7 +17,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
             type: "postgres",
             url: process.env.DATABASE_URL,
             entities: [User, Adversiment, Comment, Address, Image],
-            migrations: [initialmigration1680797633837]
+            migrations: [initial1680801480184]
         }
     }
 
@@ -31,7 +31,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
         synchronize: false,
         logging: true,
         entities: [User, Adversiment, Comment, Address, Image],
-        migrations: [initialmigration1680797633837],
+        migrations:[initial1680801480184],
     }
 }
 

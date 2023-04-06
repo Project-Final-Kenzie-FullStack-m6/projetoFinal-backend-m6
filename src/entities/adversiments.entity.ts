@@ -29,16 +29,16 @@ export class Adversiment{
     @Column({nullable: false})
     mileAge: number;
 
-    @Column({type: 'decimal', nullable: false, precision: 8, scale: 2})
+    @Column({nullable: false})
     price: number;
 
     @Column({length: 20, nullable: false})
     color: string;
     
-    @Column({type: 'decimal', nullable: false, precision: 12, scale: 2})
+    @Column({nullable: false})
     fipe: number;
 
-    @Column({nullable: false, type: "boolean", default: true})
+    @Column({nullable: false, default: true})
     isActive: boolean;
 
     @CreateDateColumn()
