@@ -1,5 +1,37 @@
 {
+  "name": "ibscars",
+  "version": "1.0.0",
+  "main": "server.ts",
+  "author": "Silas Marques",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^9.0.0",
+    "pg": "^8.10.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.12",
+    "uuid": "^9.0.0",
+    "yup": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@types/node": "^18.15.11",
+    "@types/pg": "^8.6.6",
+    "@types/uuid": "^9.0.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.3"
+  },
+  "scripts": {
+    "typeorm": "typeorm-ts-node-commonjs",
+    "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
+    "build": "tsc",
+    "start": "node dist/src/server.js"
   }
+
 }
