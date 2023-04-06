@@ -2,15 +2,15 @@ import { IUserLogin } from "../../interfaces/session/session.interface";
 import jwt from "jsonwebtoken";
 import { compare } from "bcryptjs";
 import AppDataSource from "../../data-source";
-import { Users } from "../../entities/users.entity";
 import "dotenv/config";
 import AppError from "../../errors/AppError";
+import { User } from "../../entities/user.entity";
 
 export const createSessionService = async ({
   email,
   password,
 }: IUserLogin): Promise<string> => {
-  const userRepository = AppDataSource.getRepository(Users);
+  const userRepository = AppDataSource.getRepository(User);
   const user = await userRepository.findOne({
     where: { email: email },
     withDeleted: true,
