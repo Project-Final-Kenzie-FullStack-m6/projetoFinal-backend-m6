@@ -1,18 +1,18 @@
 import {
     Entity, Column,
     PrimaryGeneratedColumn,CreateDateColumn,
-    UpdateDateColumn,
-    ManyToOne
+    UpdateDateColumn, ManyToOne
 } from "typeorm";
+import { User } from "./user.entity";
 import { Adversiment } from "./adversiments.entity";
 
-@Entity("images")
-export class Image{
+@Entity("comments")
+export class Comment{
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
     @Column({length: 255, nullable: false})
-    imageUrl: string;
+    content: string;
 
     @CreateDateColumn()
 	createdAt: Date;
@@ -20,6 +20,9 @@ export class Image{
 	@UpdateDateColumn()
 	updatedAt: Date;
 
-    @ManyToOne(() => Adversiment, adversiment => adversiment.images)
-    adversiments: Adversiment;
+    @ManyToOne(() => User)
+    user: User;
+
+    @ManyToOne(() => Adversiment, adversiment => adversiment.comments)
+    adversiment: Adversiment;
 }
