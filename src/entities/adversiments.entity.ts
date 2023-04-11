@@ -38,7 +38,7 @@ export class Adversiment{
     @Column({nullable: false})
     fipe: number;
 
-    @Column({nullable: false, default: true})
+    @Column({ default: true})
     isActive: boolean;
 
     @CreateDateColumn()
