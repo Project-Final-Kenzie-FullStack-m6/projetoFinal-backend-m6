@@ -1,23 +1,48 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
 import { IUser, IUserRequest } from "../interfaces/users/users.interface";
+import { IAddress } from "../interfaces/addresses/addresses.interface";
+
+const addressRequestSeriallizer: SchemaOf<IAddress> = yup.object({}).shape({
+  cep: yup.number().required(),
+  city: yup.string().required(),
+  complement: yup.string().notRequired(),
+  district: yup.string().required(),
+  number: yup.number().required(),
+  state: yup.string().required(),
+  street: yup.string().required(),
+});
 
 const userRequestSeriallizer: SchemaOf<IUserRequest> = yup.object({}).shape({
   name: yup.string().required(),
   email: yup.string().email().required(),
   password: yup.string().required(),
-  cpf: yup.string().required(),
-  age: yup.number().required(),
+  phone: yup.number().required(),
+  birthDate: yup.date().required(),
+  description: yup.string().required(),
+  isSeller: yup.boolean().required(),
+  address: addressRequestSeriallizer,
 });
 
 const userResponse: SchemaOf<IUser> = yup.object().shape({
   id: yup.string(),
   name: yup.string(),
   email: yup.string().email(),
-  cpf: yup.string(),
-  age: yup.number(),
+  phone: yup.number(),
+  birthDate: yup.date(),
+  description: yup.string(),
+  isSeller: yup.boolean(),
   isActive: yup.boolean(),
   createdAt: yup.date(),
+  address: yup.object().shape({
+    cep: yup.number(),
+    state: yup.string(),
+    city: yup.string(),
+    district: yup.string(),
+    street: yup.string(),
+    number: yup.number(),
+    complement: yup.string().nullable(true),
+  }),
 });
 
 const allUsersSerializer: SchemaOf<IUser[]> = yup.array(
@@ -25,10 +50,21 @@ const allUsersSerializer: SchemaOf<IUser[]> = yup.array(
     id: yup.string(),
     name: yup.string(),
     email: yup.string().email(),
-    cpf: yup.string(),
-    age: yup.number(),
+    phone: yup.number(),
+    birthDate: yup.date(),
+    description: yup.string(),
+    isSeller: yup.boolean(),
     isActive: yup.boolean(),
     createdAt: yup.date(),
+    address: yup.object().shape({
+      cep: yup.number(),
+      state: yup.string(),
+      city: yup.string(),
+      district: yup.string(),
+      street: yup.string(),
+      number: yup.number(),
+      complement: yup.string(),
+    }),
   })
 );
 
