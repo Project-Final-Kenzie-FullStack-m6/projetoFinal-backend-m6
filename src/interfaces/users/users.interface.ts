@@ -1,9 +1,11 @@
+import { IAddress } from "../addresses/addresses.interface";
 export interface IUserRequest {
   name: string;
   email: string;
   password: string;
   age: number;
   cpf: string;
+  address: IAddress;
 }
 
 export interface IUser {
@@ -14,6 +16,7 @@ export interface IUser {
   cpf: string;
   isActive: boolean;
   createdAt: Date;
+  addressId: string;
 }
 
 export interface IUserUpdate {
