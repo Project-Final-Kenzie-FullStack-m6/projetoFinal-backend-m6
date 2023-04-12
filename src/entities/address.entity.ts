@@ -27,7 +27,7 @@ export class Address{
     @Column({nullable: false})
     number: number;
 
-    @Column({length: 50})
+    @Column({length: 50, nullable: true})
     complement: string;
 
     @CreateDateColumn()
