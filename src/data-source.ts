@@ -19,6 +19,16 @@ const setDataSourceConfig = (): DataSourceOptions => {
       migrations: [initial1680801480184],
     };
   }
+  if(nodeEnv ==="test"){
+   return{
+     type: "sqlite",
+          database: ":memory:",
+          entities: [User, Adversiment, Comment, Address, Image],
+          synchronize: true,
+        }
+       
+  } 
+  
 
   return {
     type: "postgres",
