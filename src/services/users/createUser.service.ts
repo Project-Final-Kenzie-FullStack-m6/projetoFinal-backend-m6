@@ -19,13 +19,15 @@ const createUserService = async (userData: IUserRequest): Promise<IUser> => {
     throw new AppError("User already exists", 409);
   }
 
-  const address = addressRepository.create(userData.address);
-  await addressRepository.save(address);
+  const newAddress = addressRepository.create(userData.address);
+  await addressRepository.save(newAddress);
 
-  const newUser = userRepository.create({ ...userData, address: address });
+  const newUser = userRepository.create({ ...userData, address: newAddress });
   await userRepository.save(newUser);
 
-  const response = await userResponse.validate(newUser, {
+  const newResponse = { ...newUser, newAddress };
+
+  const response = await userResponse.validate(newResponse, {
     stripUnknown: true,
   });
 

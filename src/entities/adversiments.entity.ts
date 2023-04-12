@@ -34,11 +34,14 @@ export class Adversiment{
 
     @Column({length: 20, nullable: false})
     color: string;
+
+    @Column({ length: 255, nullable: false })
+    description: string;
     
     @Column({nullable: false})
     fipe: number;
 
-    @Column({nullable: false, default: true})
+    @Column({ default: true})
     isActive: boolean;
 
     @CreateDateColumn()

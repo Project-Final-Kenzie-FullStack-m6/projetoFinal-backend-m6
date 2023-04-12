@@ -1,10 +1,12 @@
-import { IAddress } from "../addresses/addresses.interface";
+import { IAddress, IAddressUpdate } from "../addresses/addresses.interface";
 export interface IUserRequest {
   name: string;
   email: string;
   password: string;
-  age: number;
-  cpf: string;
+  phone: number;
+  birthDate: Date;
+  description: string;
+  isSeller: boolean;
   address: IAddress;
 }
 
@@ -12,11 +14,13 @@ export interface IUser {
   id: string;
   name: string;
   email: string;
-  age: number;
-  cpf: string;
+  phone: number;
+  birthDate: Date;
+  description: string;
+  isSeller: boolean;
   isActive: boolean;
   createdAt: Date;
-  addressId: string;
+  address: IAddress;
 }
 
 export interface IUserUpdate {
@@ -25,4 +29,5 @@ export interface IUserUpdate {
   password?: string;
   age?: number;
   cpf?: string;
+  address?: IAddressUpdate;
 }
