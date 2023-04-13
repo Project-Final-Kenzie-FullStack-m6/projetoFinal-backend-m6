@@ -1,26 +1,28 @@
 import * as yup from 'yup'
 import { SchemaOf } from 'yup'
-import { IAdversimentRequest, IAdversimentUpdate, IImagemResponse } from "../interfaces/adversiments/adversiments.interface";
+import { IAdversimentRequest, IAdversimentResponse, IAdversimentUpdate, IImagemResponse } from "../interfaces/adversiments/adversiments.interface";
 import { userRequestSeriallizer } from './user.serializers';
+import { userResponse } from './user.serializers';
 
 
 const schema:SchemaOf<IImagemResponse> = yup.object().shape({
     imageUrl: yup.string().max(255).required(),
 })
 
-const adversimentSerializer: SchemaOf<IAdversimentRequest> = yup.object().shape({
+const adversimentSerializer: SchemaOf<any> = yup.object().shape({
     // comments: yup.string().notRequired(),
     fuelType: yup.string().max(10).required(),
     images: yup.array().of(schema),
     mileAge: yup.number().required(),
-    user: userRequestSeriallizer,
+    user: userResponse,
     brand: yup.string().max(50).required(),
     price: yup.number().required(),
     color: yup.string().max(20).required(),
     model: yup.string().max(50).required(),
     fipe: yup.number().required(),
     description: yup.string().max(255).required(),
-    age: yup.number().required()
+    age: yup.number().required(),
+    id: yup.string().uuid()
 }).noUnknown()
 
 const adversimentUpdateSerializer: SchemaOf<IAdversimentUpdate> = yup.object().shape({  
@@ -34,9 +36,9 @@ const adversimentUpdateSerializer: SchemaOf<IAdversimentUpdate> = yup.object().s
     model: yup.string().max(50).notRequired(),
     fipe: yup.number().notRequired(),
     age: yup.number().notRequired(),
-    image: yup.object().shape({
+    images: yup.array().of(yup.object().shape({
         imageUrl: yup.string().max(255).notRequired(),
-    })
+    }))
 
 })
 
