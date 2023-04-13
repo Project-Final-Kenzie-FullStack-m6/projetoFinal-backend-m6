@@ -25,24 +25,24 @@ const userRequestSeriallizer: SchemaOf<IUserRequest> = yup.object({}).shape({
 });
 
 const userResponse: SchemaOf<IUser> = yup.object().shape({
-  id: yup.string(),
-  name: yup.string(),
-  email: yup.string().email(),
-  phone: yup.number(),
-  birthDate: yup.date(),
-  description: yup.string(),
-  isSeller: yup.boolean(),
-  isActive: yup.boolean(),
-  createdAt: yup.date(),
   address: yup.object().shape({
-    cep: yup.number(),
-    state: yup.string(),
-    city: yup.string(),
-    district: yup.string(),
-    street: yup.string(),
-    number: yup.number(),
     complement: yup.string().nullable(true),
+    number: yup.number(),
+    street: yup.string(),
+    district: yup.string(),
+    city: yup.string(),
+    state: yup.string(),
+    cep: yup.number(),
   }),
+  createdAt: yup.date(),
+  isActive: yup.boolean(),
+  isSeller: yup.boolean(),
+  description: yup.string(),
+  birthDate: yup.date(),
+  phone: yup.number(),
+  email: yup.string().email(),
+  name: yup.string(),
+  id: yup.string(),
 });
 
 const allUsersSerializer: SchemaOf<IUser[]> = yup.array(

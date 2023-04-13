@@ -2,19 +2,17 @@ import AppDataSource from "../../data-source";
 import { Adversiment } from "../../entities/adversiments.entity";
 
 const listAdversimentService = async () => {
-    const AdversimentRepository = AppDataSource.getRepository(Adversiment);
 
-    const adversimentList = AdversimentRepository.find({
-        relations: {
-            user: true,
-            images:true,
-            comments:true
+    const adversiments = await AppDataSource
+    .createQueryBuilder()
+    .from(Adversiment, "adversiments")
+    .select("adversiments")
+    .leftJoinAndSelect("adversiments.images", "images")
+    .leftJoinAndSelect("adversiments.user","user")
+    .withDeleted()
+    .getMany();
 
-        }
-    })
-
-
-    return adversimentList
+    return adversiments
 }
 
 export default listAdversimentService 

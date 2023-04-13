@@ -21,5 +21,5 @@ export class Image{
 	updatedAt: Date;
 
     @ManyToOne(() => Adversiment, adversiment => adversiment.images)
-    adversiments: Adversiment;
+    adversiment: Adversiment;
 }

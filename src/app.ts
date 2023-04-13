@@ -1,4 +1,5 @@
 import "reflect-metadata"
+import "express-async-errors";
 import cors from "cors"
 import express from "express"
 import handleError from "./errors/handleErrors";
@@ -12,7 +13,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use("/users", useRoutes)
-app.use("/session", sessionRouters)
+app.use("/login", sessionRouters)
 app.use("/adversiments", adversimentRoutes)
 
 app.use(handleError)

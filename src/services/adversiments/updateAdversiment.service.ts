@@ -4,7 +4,7 @@ import AppError from "../../errors/AppError";
 import { Adversiment } from "../../entities/adversiments.entity";
 
 
-const uptadeAdversimentService = async (idAdversiment:string, adversimentUpdateData:IAdversimentUpdate) => {
+const updateAdversimentService = async (idAdversiment:string, adversimentUpdateData:IAdversimentUpdate) => {
 
     const AdversimentRepository = AppDataSource.getRepository(Adversiment);
 
@@ -31,4 +31,4 @@ const uptadeAdversimentService = async (idAdversiment:string, adversimentUpdateD
     
 }
 
-export default uptadeAdversimentService 
+export default updateAdversimentService 

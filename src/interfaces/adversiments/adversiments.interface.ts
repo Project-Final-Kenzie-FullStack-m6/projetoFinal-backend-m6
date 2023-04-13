@@ -1,3 +1,5 @@
+import { User } from "../../entities/user.entity"
+
 export interface IAdversimentRequest {
     brand: string
     model: string
@@ -7,12 +9,12 @@ export interface IAdversimentRequest {
     price: number
     color:string
     fipe: number
-    userId: string
-    commentsId: string
-    image:IImagemRequest
+    user: User
+    images:[IImagemRequest]
 }
 
 export interface IImagemRequest {
+    adversimentId:string
     imageUrl:string
 }
 export interface IImagemUpdate {
