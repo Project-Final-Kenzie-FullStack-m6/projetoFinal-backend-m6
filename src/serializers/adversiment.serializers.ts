@@ -18,6 +18,7 @@ const adversimentSerializer: SchemaOf<IAdversimentRequest> = yup.object().shape(
     color: yup.string().max(20).required(),
     model: yup.string().max(50).required(),
     fipe: yup.number().required(),
+    description: yup.string().max(255).required(),
     age: yup.number().required()
 })
 
