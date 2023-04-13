@@ -26,10 +26,10 @@ const userRequestSeriallizer: SchemaOf<IUserRequest> = yup.object({}).shape({
 
 const userResponse: SchemaOf<IUser> = yup.object().shape({
   address: yup.object().shape({
-    complement: yup.string().nullable(true),
     number: yup.number(),
     street: yup.string(),
     district: yup.string(),
+    complement: yup.string().nullable(true),
     city: yup.string(),
     state: yup.string(),
     cep: yup.number(),

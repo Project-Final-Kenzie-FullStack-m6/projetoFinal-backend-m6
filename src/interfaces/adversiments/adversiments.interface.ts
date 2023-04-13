@@ -14,7 +14,7 @@ export interface IAdversimentRequest {
 }
 
 export interface IImagemRequest {
-    adversimentId:string
+    adversiment:IAdversimentRequest
     imageUrl:string
 }
 export interface IImagemUpdate {

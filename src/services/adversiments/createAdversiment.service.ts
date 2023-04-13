@@ -2,6 +2,7 @@ import { IAdversimentRequest } from "../../interfaces/adversiments/adversiments.
 import AppDataSource from "../../data-source";
 import { Image } from "../../entities/image.entity";
 import { Adversiment } from "../../entities/adversiments.entity";
+import { adversimentSerializer } from "../../serializers/adversiment.serializers";
 
 
 
@@ -23,9 +24,13 @@ const createAdversimentService = async (adversimentData: IAdversimentRequest,) =
 
     const anuncioComImagens = {
         ...adversiment,
-        imagens: imagensSalvas,
+        images: imagensSalvas,
       };
-    return anuncioComImagens;
+      const response = await adversimentSerializer.validate(anuncioComImagens, {
+        stripUnknown: true,
+      });
+    
+    return response;
 };
 
 export default createAdversimentService 
