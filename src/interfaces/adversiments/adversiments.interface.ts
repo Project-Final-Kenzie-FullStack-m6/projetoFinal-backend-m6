@@ -8,6 +8,7 @@ export interface IAdversimentRequest {
     color:string
     fipe: number
     userId: string
+    description: string
     commentsId: string
     image:IImagemRequest
 }
