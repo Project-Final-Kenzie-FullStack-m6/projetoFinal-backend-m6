@@ -6,12 +6,14 @@ import { IAdversimentRequest, IAdversimentUpdate } from "../../interfaces/advers
 import createAdversimentService from "../../services/adversiments/createAdversiment.service";
 import listAdversimentService from "../../services/adversiments/listAdversiment.service";
 import deleteAdversimentService from "../../services/adversiments/deleteAdversiment.service";
-import uptadeAdversimentService from "../../services/adversiments/updateAdversiment.service";
+import updateAdversimentService from "../../services/adversiments/updateAdversiment.service";
 
 
 
 const createAdversimentController = async (req: Request, res: Response) => {
-    const adversimentData: IAdversimentRequest = req.body
+    const adversimentData = req.body
+    const userId:string = req.user.id
+    adversimentData.user=userId
     const createAdversiment = await createAdversimentService(adversimentData)
     return res.status(201).json(createAdversiment)
 }
@@ -23,15 +25,15 @@ const listAdversimentControler = async (req:Request, res:Response ) => {
 
 const deleteAdversimentController = async (req: Request, res: Response) => {
     const idAdversiment : string = req.params.id
-    const deleteAdversiment = await deleteAdversimentService(idAdversiment)
-    return res.status(204).json(deleteAdversiment)
+    await deleteAdversimentService(idAdversiment)
+    return res.status(204)
 }
 
-const uptadeAdversimentController = async (req: Request, res: Response) => { 
+const updateAdversimentController = async (req: Request, res: Response) => { 
     const adversimentUpdateData: IAdversimentUpdate = req.body
     const idAdversiment : string = req.params.id
-    const updateAdversiment = await uptadeAdversimentService(idAdversiment, adversimentUpdateData) 
+    const updateAdversiment = await updateAdversimentService(idAdversiment, adversimentUpdateData) 
     return res.status(200).json(updateAdversiment)
 }
 
-export {createAdversimentController, listAdversimentControler, deleteAdversimentController, uptadeAdversimentController}
+export {createAdversimentController, listAdversimentControler, deleteAdversimentController, updateAdversimentController}

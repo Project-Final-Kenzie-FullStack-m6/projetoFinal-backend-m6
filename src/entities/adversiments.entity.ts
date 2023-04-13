@@ -4,7 +4,7 @@ import {
     UpdateDateColumn,OneToMany, ManyToOne
 } from "typeorm";
 
-import { Comment } from "./comments.entity";
+// import { Comment } from "./comments.entity";
 import { User } from "./user.entity";
 import { Image } from "./image.entity";
 
@@ -50,13 +50,13 @@ export class Adversiment{
 	@UpdateDateColumn()
 	updatedAt: Date;
 
-    @ManyToOne(() => User, user => user.adversiments)
+    @ManyToOne(() => User, (user) => user.adversiments)
     user: User;
 
-    @OneToMany(() => Comment, comments => comments.adversiment)
-    comments: Comment[];
+    // @OneToMany(() => Comment, comments => comments.adversiment)
+    // comments: Comment[];
 
-    @OneToMany(() => Image, images => images.adversiments)
+    @OneToMany(() => Image, images => images.adversiment)
     images: Image[];
 
 };

@@ -4,7 +4,7 @@ import  AppError  from "../../errors/AppError";
 
 
 
-const deleteAdversimentService = async (id:string) => {
+const deleteAdversimentService = async (id:string):Promise<void> => {
 
     const AdversimentRepository = AppDataSource.getRepository(Adversiment);
     const adversiment = await AdversimentRepository.findOneBy({id:id });
@@ -21,7 +21,6 @@ const deleteAdversimentService = async (id:string) => {
 
     await AdversimentRepository.save(adversiment)
 
-    return {}
 
 }
 

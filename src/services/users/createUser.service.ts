@@ -15,9 +15,9 @@ const createUserService = async (userData: IUserRequest): Promise<IUser> => {
     email: email,
   });
 
-  if (emailUnavailable) {
-    throw new AppError("User already exists", 409);
-  }
+    if (emailUnavailable) {
+      throw new AppError("User already exists", 409);
+    }
 
   const newAddress = addressRepository.create(userData.address);
   await addressRepository.save(newAddress);

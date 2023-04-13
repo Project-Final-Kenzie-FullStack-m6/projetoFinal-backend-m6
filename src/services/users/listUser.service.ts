@@ -5,7 +5,11 @@ import { userResponse } from "../../serializers/user.serializers";
 
 const listUserInfoService = async (id: string): Promise<IUser> => {
   const userRepository = AppDataSource.getRepository(User);
-  const findUser = await userRepository.findOneBy({ id: id });
+  const findUser = await userRepository
+    .createQueryBuilder("user")
+    .leftJoinAndSelect("user.address", "address")
+    .where("user.id = :id", { id })
+    .getOne();
   const response = await userResponse.validate(findUser, {
     stripUnknown: true,
   });

@@ -9,8 +9,7 @@ import {
 const useRoutes = Router();
 
 useRoutes.post("", createUserController);
-useRoutes.get("", ensureAuthMiddleware, listUserControler);
-useRoutes.get("/:id");
+useRoutes.get("", ensureAuthMiddleware,listUserControler);
 useRoutes.patch("", ensureAuthMiddleware, updateUserController);
 useRoutes.patch(":/id/address");
 useRoutes.delete("", ensureAuthMiddleware, deleteUserController);
