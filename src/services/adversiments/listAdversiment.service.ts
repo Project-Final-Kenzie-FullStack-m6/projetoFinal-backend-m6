@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source";
 import { Adversiment } from "../../entities/adversiments.entity";
-import { adversimentSerializer } from "../../serializers/adversiment.serializers";
+import { adversimentResponseSerializer, adversimentSerializer } from "../../serializers/adversiment.serializers";
 
 const listAdversimentService = async () => {
 
@@ -16,7 +16,7 @@ const listAdversimentService = async () => {
 
       const validatedData = adversiments.map(obj => {
       
-        return adversimentSerializer.validate(obj, { stripUnknown:true })
+        return adversimentResponseSerializer.validate(obj, { stripUnknown:true })
       });
      return await Promise.all(validatedData);
 }

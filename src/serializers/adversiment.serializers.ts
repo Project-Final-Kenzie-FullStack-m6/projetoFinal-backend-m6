@@ -5,15 +5,34 @@ import { userRequestSeriallizer } from './user.serializers';
 import { userResponse } from './user.serializers';
 
 
-const schema:SchemaOf<IImagemResponse> = yup.object().shape({
-    imageUrl: yup.string().max(255).required(),
-})
+// const schema:SchemaOf<IImagemResponse> = yup.object().shape({
+//     imageUrl: yup.string().max(255).required(),
+// })
 
 const adversimentSerializer: SchemaOf<any> = yup.object().shape({
     // comments: yup.string().notRequired(),
     fuelType: yup.string().max(10).required(),
-    images: yup.array().of(schema),
+    images: yup.array().of(yup.object().shape({
+        imageUrl: yup.string().max(255).required(),
+    })),
     mileAge: yup.number().required(),
+    brand: yup.string().max(50).required(),
+    price: yup.number().required(),
+    color: yup.string().max(20).required(),
+    model: yup.string().max(50).required(),
+    fipe: yup.number().required(),
+    description: yup.string().max(255).required(),
+    age: yup.number().required(),
+    id: yup.string().uuid()
+})
+
+const adversimentResponseSerializer: SchemaOf<any> = yup.object().shape({
+    // comments: yup.string().notRequired(),
+    fuelType: yup.string().max(10),
+    images: yup.array().of(yup.object().shape({
+        imageUrl: yup.string().max(255).required(),
+    })),
+    mileAge: yup.number(),
     user: userResponse,
     brand: yup.string().max(50).required(),
     price: yup.number().required(),
@@ -23,7 +42,7 @@ const adversimentSerializer: SchemaOf<any> = yup.object().shape({
     description: yup.string().max(255).required(),
     age: yup.number().required(),
     id: yup.string().uuid()
-}).noUnknown()
+})
 
 const adversimentUpdateSerializer: SchemaOf<IAdversimentUpdate> = yup.object().shape({  
     commentsId: yup.string().notRequired(),
@@ -42,4 +61,4 @@ const adversimentUpdateSerializer: SchemaOf<IAdversimentUpdate> = yup.object().s
 
 })
 
-export { adversimentSerializer, adversimentUpdateSerializer}
+export { adversimentSerializer, adversimentUpdateSerializer,adversimentResponseSerializer}
