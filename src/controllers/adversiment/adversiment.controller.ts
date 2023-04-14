@@ -26,7 +26,7 @@ const listAdversimentControler = async (req:Request, res:Response ) => {
 const deleteAdversimentController = async (req: Request, res: Response) => {
     const idAdversiment : string = req.params.id
     await deleteAdversimentService(idAdversiment)
-    return res.status(204)
+    return res.status(204).json()
 }
 
 const updateAdversimentController = async (req: Request, res: Response) => { 

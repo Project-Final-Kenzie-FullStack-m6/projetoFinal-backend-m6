@@ -38,7 +38,8 @@ export interface IAdversimentResponse {
     fipe: number
     isActive: boolean
     createdAt: Date
-
+    images: [IImagemResponse]
+    user: IUser
 }
 
 
@@ -51,7 +52,6 @@ export interface IAdversimentUpdate {
     price?: number
     color?:string
     fipe?: number
-    userId?: string
     commentsId?: string
-    image?:IImagemUpdate
+    images?:any|[]
 }
