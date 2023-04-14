@@ -10,6 +10,7 @@ const createUserService = async (userData: IUserRequest): Promise<IUser> => {
   const addressRepository = AppDataSource.getRepository(Address);
 
   const email = userData.email;
+  
 
   const emailUnavailable = await userRepository.findOneBy({
     email: email,

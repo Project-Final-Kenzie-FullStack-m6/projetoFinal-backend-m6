@@ -11,8 +11,7 @@ const updateAdversimentService = async (idAdversiment:string, adversimentUpdateD
     const imageRepository = AppDataSource.getRepository(Image)
     
     if (adversimentUpdateData.images == undefined){
-        adversimentUpdateData.images = ["!"]
-        adversimentUpdateData.images.pop()
+        adversimentUpdateData.images = []
     }
     let images= adversimentUpdateData.images
     delete adversimentUpdateData.images
@@ -39,7 +38,6 @@ const updateAdversimentService = async (idAdversiment:string, adversimentUpdateD
         ...adversimentUpdateData,
       });
     await AdversimentRepository.save(updateAdversiment)
-    console.log(updateAdversiment)
 
     if(images.length>0){
         const imagensAtualizadas = await imageRepository.save(images.map(image => ({
