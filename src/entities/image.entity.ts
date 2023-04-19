@@ -1,25 +1,27 @@
 import {
-    Entity, Column,
-    PrimaryGeneratedColumn,CreateDateColumn,
-    UpdateDateColumn,
-    ManyToOne
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
 } from "typeorm";
-import { Adversiment } from "./adversiments.entity";
+import { Advertisement } from "./advertisements.entity";
 
 @Entity("images")
-export class Image{
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+export class Image {
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
-    @Column({length: 255, nullable: false})
-    imageUrl: string;
+  @Column({ length: 255, nullable: false })
+  imageUrl: string;
 
-    @CreateDateColumn()
-	createdAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-	@UpdateDateColumn()
-	updatedAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 
-    @ManyToOne(() => Adversiment, adversiment => adversiment.images)
-    adversiment: Adversiment;
+  @ManyToOne(() => Advertisement, (advertisement) => advertisement.images)
+  advertisement: Advertisement;
 }
