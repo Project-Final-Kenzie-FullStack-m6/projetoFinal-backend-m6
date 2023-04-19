@@ -1,27 +1,22 @@
 import AppDataSource from "../../data-source";
-import { Adversiment } from "../../entities/adversiments.entity";
-import  AppError  from "../../errors/AppError";
+import { Advertisement } from "../../entities/advertisements.entity";
+import AppError from "../../errors/AppError";
 
+const deleteAdversimentService = async (id: string): Promise<void> => {
+  const AdversimentRepository = AppDataSource.getRepository(Advertisement);
+  const adversiment = await AdversimentRepository.findOneBy({ id: id });
 
+  if (!adversiment) {
+    throw new AppError("Advertisement not found ", 404);
+  }
 
-const deleteAdversimentService = async (id:string):Promise<void> => {
+  if (adversiment.isActive == false) {
+    throw new AppError("advertisement is already inactive ", 400);
+  }
 
-    const AdversimentRepository = AppDataSource.getRepository(Adversiment);
-    const adversiment = await AdversimentRepository.findOneBy({id:id });
-    
-    if(!adversiment){
-        throw new AppError('Adversiment not found ', 404)
-    }
+  adversiment.isActive = false;
 
-    if(adversiment.isActive==false){
-        throw new AppError('adversiment is already inactive ', 400)
-    }
+  await AdversimentRepository.save(adversiment);
+};
 
-    adversiment.isActive = false
-
-    await AdversimentRepository.save(adversiment)
-
-
-}
-
-export default deleteAdversimentService 
+export default deleteAdversimentService;

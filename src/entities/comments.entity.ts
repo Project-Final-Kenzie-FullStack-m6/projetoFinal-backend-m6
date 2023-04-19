@@ -1,28 +1,31 @@
-// import {
-//     Entity, Column,
-//     PrimaryGeneratedColumn,CreateDateColumn,
-//     UpdateDateColumn, ManyToOne
-// } from "typeorm";
-// import { User } from "./user.entity";
-// import { Adversiment } from "./adversiments.entity";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
+} from "typeorm";
+import { User } from "./user.entity";
+import { Advertisement } from "./advertisements.entity";
 
-// @Entity("comments")
-// export class Comment{
-//     @PrimaryGeneratedColumn("uuid")
-//     id: string;
+@Entity("comments")
+export class Comment {
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
-//     @Column({length: 255, nullable: false})
-//     content: string;
+  @Column({ length: 255, nullable: false })
+  content: string;
 
-//     @CreateDateColumn()
-// 	createdAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-// 	@UpdateDateColumn()
-// 	updatedAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 
-//     @ManyToOne(() => User)
-//     user: User;
+  @ManyToOne(() => User)
+  user: User;
 
-//     // @ManyToOne(() => Adversiment, adversiment => adversiment.comments)
-//     // adversiment: Adversiment;
-// }
+  @ManyToOne(() => Advertisement, (advertisement) => advertisement.comments)
+  advertisement: Advertisement;
+}

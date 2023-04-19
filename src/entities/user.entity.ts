@@ -13,7 +13,7 @@ import {
 
 import { getRounds, hashSync } from "bcryptjs";
 import { Address } from "./address.entity";
-import { Adversiment } from "./adversiments.entity";
+import { Advertisement } from "./advertisements.entity";
 
 @Entity("users")
 export class User {
@@ -54,8 +54,8 @@ export class User {
   @JoinColumn()
   address: Address;
 
-  @OneToMany(() => Adversiment, (adversiments) => adversiments.user)
-  adversiments: Adversiment[];
+  @OneToMany(() => Advertisement, (advertisements) => advertisements.user)
+  advertisements: Advertisement[];
 
   @BeforeUpdate()
   @BeforeInsert()

@@ -2,12 +2,11 @@ import "reflect-metadata";
 import "dotenv/config";
 import { DataSource, DataSourceOptions } from "typeorm";
 import { User } from "./entities/user.entity";
-import { Adversiment } from "./entities/adversiments.entity";
-// import { Comment } from "./entities/comments.entity";
+import { Advertisement } from "./entities/advertisements.entity";
+import { Comment } from "./entities/comments.entity";
 import { Address } from "./entities/address.entity";
 import { Image } from "./entities/image.entity";
-import { initialMigration1681393028173 } from "./migrations/1681393028173-initialMigration";
-
+import { initialMigration1681828696275 } from "./migrations/1681828696275-initialMigration";
 
 const setDataSourceConfig = (): DataSourceOptions => {
   const nodeEnv = process.env.NODE_ENV;
@@ -16,20 +15,18 @@ const setDataSourceConfig = (): DataSourceOptions => {
     return {
       type: "postgres",
       url: process.env.DATABASE_URL,
-      entities: [User, Adversiment,Address, Image],
-      migrations: [initialMigration1681393028173],
+      entities: [User, Advertisement, Address, Image, Comment],
+      migrations: [initialMigration1681828696275],
     };
   }
-  if(nodeEnv ==="test"){
-   return{
-     type: "sqlite",
-          database: ":memory:",
-          entities: [User, Adversiment, Comment, Address, Image],
-          synchronize: true,
-        }
-       
-  } 
-  
+  if (nodeEnv === "test") {
+    return {
+      type: "sqlite",
+      database: ":memory:",
+      entities: [User, Advertisement, Comment, Address, Image],
+      synchronize: true,
+    };
+  }
 
   return {
     type: "postgres",
@@ -40,8 +37,8 @@ const setDataSourceConfig = (): DataSourceOptions => {
     database: process.env.DB,
     synchronize: false,
     logging: true,
-    entities: [User, Adversiment, Address, Image],
-    migrations: [initialMigration1681393028173],
+    entities: [User, Advertisement, Address, Image, Comment],
+    migrations: [initialMigration1681828696275],
   };
 };
 
