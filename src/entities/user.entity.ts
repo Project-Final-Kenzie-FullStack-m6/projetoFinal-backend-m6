@@ -32,6 +32,9 @@ export class User {
   @Column({ nullable: false })
   phone: number;
 
+  @Column({ nullable: false, type:"bigint"})
+  cpf: number;
+
   @Column({ nullable: false })
   birthDate: Date;
 
