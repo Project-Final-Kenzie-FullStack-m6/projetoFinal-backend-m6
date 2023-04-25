@@ -26,6 +26,7 @@ const commentResponseSeriallizer: SchemaOf<ICommentUpdateRequest> = yup
 			description: yup.string(),
 			phone: yup.number(),
 			email: yup.string(),
+			cpf: yup.number(),
 			name: yup.string(),
 			id: yup.string(),
 		}),
