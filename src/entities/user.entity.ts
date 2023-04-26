@@ -1,14 +1,14 @@
 import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  OneToOne,
-  BeforeUpdate,
-  BeforeInsert,
-  JoinColumn,
-  OneToMany,
+	Entity,
+	Column,
+	PrimaryGeneratedColumn,
+	CreateDateColumn,
+	UpdateDateColumn,
+	OneToOne,
+	BeforeUpdate,
+	BeforeInsert,
+	JoinColumn,
+	OneToMany,
 } from "typeorm";
 
 import { getRounds, hashSync } from "bcryptjs";
@@ -17,55 +17,58 @@ import { Advertisement } from "./advertisements.entity";
 
 @Entity("users")
 export class User {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+	@PrimaryGeneratedColumn("uuid")
+	id: string;
 
-  @Column({ length: 50, nullable: false })
-  name: string;
+	@Column({ length: 50, nullable: false })
+	name: string;
 
-  @Column({ length: 50, nullable: false, unique: true })
-  email: string;
+	@Column({ length: 50, nullable: false, unique: true })
+	email: string;
 
-  @Column({ length: 64, nullable: false })
-  password: string;
+	@Column({ length: 64, nullable: false })
+	password: string;
 
-  @Column({ nullable: false })
-  phone: number;
+	@Column({ nullable: false })
+	phone: number;
 
-  @Column({ nullable: false, type:"bigint"})
-  cpf: number;
+	@Column({ nullable: false, type: "bigint" })
+	cpf: number;
 
-  @Column({ nullable: false })
-  birthDate: Date;
+	@Column({ nullable: false })
+	birthDate: Date;
 
-  @Column({ length: 255, nullable: false })
-  description: string;
+	@Column({ length: 255, nullable: false })
+	description: string;
 
-  @Column({ nullable: false })
-  isSeller: boolean;
+	@Column({ nullable: false })
+	isSeller: boolean;
 
-  @Column({ nullable: false, default: true })
-  isActive: boolean;
+	@Column({ nullable: false, default: true })
+	isActive: boolean;
 
-  @CreateDateColumn()
-  createdAt: Date;
+	@Column({ nullable: true, default: null })
+	resetToken: string;
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+	@CreateDateColumn()
+	createdAt: Date;
 
-  @OneToOne(() => Address)
-  @JoinColumn()
-  address: Address;
+	@UpdateDateColumn()
+	updatedAt: Date;
 
-  @OneToMany(() => Advertisement, (advertisements) => advertisements.user)
-  advertisements: Advertisement[];
+	@OneToOne(() => Address)
+	@JoinColumn()
+	address: Address;
 
-  @BeforeUpdate()
-  @BeforeInsert()
-  hashPassword() {
-    const isEncrypted = getRounds(this.password);
-    if (!isEncrypted) {
-      this.password = hashSync(this.password, 10);
-    }
-  }
+	@OneToMany(() => Advertisement, (advertisements) => advertisements.user)
+	advertisements: Advertisement[];
+
+	@BeforeUpdate()
+	@BeforeInsert()
+	hashPassword() {
+		const isEncrypted = getRounds(this.password);
+		if (!isEncrypted) {
+			this.password = hashSync(this.password, 10);
+		}
+	}
 }

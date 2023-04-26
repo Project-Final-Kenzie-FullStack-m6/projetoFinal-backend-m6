@@ -5,6 +5,7 @@
   "author": "Silas Marques",
   "license": "MIT",
   "dependencies": {
+    "@types/nodemailer": "^6.4.7",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
@@ -12,6 +13,8 @@
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^9.0.0",
+    "mailgen": "^2.0.27",
+    "nodemailer": "^6.9.1",
     "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
     "supertest": "^6.3.3",
