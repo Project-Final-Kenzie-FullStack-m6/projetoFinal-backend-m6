@@ -21,7 +21,7 @@ const createAdversimentService = async (
   const imagensSalvas = await ImageRepository.save(
     images.map((imagem) => ({
       ...imagem,
-      adversiment: adversiment,
+      advertisement: adversiment,
     }))
   );
 
