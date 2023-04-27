@@ -12,8 +12,8 @@ const adversimentRoutes = Router();
 
 adversimentRoutes.post(
 	"",
-	ensureVerifyIsSellerMiddleware,
 	ensureAuthMiddleware,
+	ensureVerifyIsSellerMiddleware,
 	createAdversimentController
 );
 adversimentRoutes.get("", listAdversimentControler);
