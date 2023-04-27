@@ -7,7 +7,6 @@ const addressRequestSeriallizer: SchemaOf<IAddress> = yup.object({}).shape({
   cep: yup.number().required(),
   city: yup.string().required(),
   complement: yup.string().notRequired(),
-  district: yup.string().required(),
   number: yup.number().required(),
   state: yup.string().required(),
   street: yup.string().required(),
@@ -29,7 +28,6 @@ const userResponse: SchemaOf<IUser> = yup.object().shape({
   address: yup.object().shape({
     number: yup.number(),
     street: yup.string(),
-    district: yup.string(),
     complement: yup.string().nullable(true),
     city: yup.string(),
     state: yup.string(),
@@ -63,7 +61,6 @@ const allUsersSerializer: SchemaOf<IUser[]> = yup.array(
       cep: yup.number(),
       state: yup.string(),
       city: yup.string(),
-      district: yup.string(),
       street: yup.string(),
       number: yup.number(),
       complement: yup.string(),

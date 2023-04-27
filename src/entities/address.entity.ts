@@ -20,9 +20,6 @@ export class Address {
   @Column({ length: 30, nullable: false })
   city: string;
 
-  @Column({ length: 50, nullable: false })
-  district: string;
-
   @Column({ length: 80, nullable: false })
   street: string;
 
