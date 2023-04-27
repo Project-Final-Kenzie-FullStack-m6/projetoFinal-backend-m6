@@ -4,7 +4,7 @@ export interface IUserRequest {
 	email: string;
 	password: string;
 	phone: number;
-	cpf:number;
+	cpf: number;
 	birthDate: Date;
 	description: string;
 	isSeller: boolean;
@@ -15,7 +15,7 @@ export interface IUser {
 	id: string;
 	name: string;
 	email: string;
-	cpf:number;
+	cpf: number;
 	phone: number;
 	birthDate: Date;
 	description: string;
@@ -38,8 +38,8 @@ export interface IUserResponse {
 	id: string;
 	name: string;
 	email: string;
+	cpf: number;
 	phone: number;
-	cpf:number;
 	description: string;
 	isSeller: boolean;
 }

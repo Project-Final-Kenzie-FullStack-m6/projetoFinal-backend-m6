@@ -32,7 +32,7 @@ export class User {
   @Column({ nullable: false,type:"bigint" })
   phone: number;
 
-  @Column({ nullable: false,type:"bigint"})
+  @Column({ nullable: false, type:"bigint"})
   cpf: number;
 
   @Column({ nullable: false })

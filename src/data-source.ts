@@ -6,8 +6,7 @@ import { Advertisement } from "./entities/advertisements.entity";
 import { Comment } from "./entities/comments.entity";
 import { Address } from "./entities/address.entity";
 import { Image } from "./entities/image.entity";
-import { initialMigration1681996694919 } from "./migrations/1681996694919-initialMigration";
-import { newTypecpf1681997245574 } from "./migrations/1681997245574-newTypecpf";
+import {inititalmigration1682446716290} from "./migrations/1682446716290-inititalmigration"
 
 const setDataSourceConfig = (): DataSourceOptions => {
   const nodeEnv = process.env.NODE_ENV;
@@ -17,7 +16,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
       type: "postgres",
       url: process.env.DATABASE_URL,
       entities: [User, Advertisement, Address, Image, Comment],
-      migrations: [initialMigration1681996694919,newTypecpf1681997245574],
+      migrations: [inititalmigration1682446716290],
     };
   }
   if (nodeEnv === "test") {
@@ -39,7 +38,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [User, Advertisement, Address, Image, Comment],
-    migrations: [initialMigration1681996694919,newTypecpf1681997245574],
+    migrations: [inititalmigration1682446716290],
   };
 };
 
