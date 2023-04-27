@@ -29,8 +29,8 @@ export class User {
 	@Column({ length: 64, nullable: false })
 	password: string;
 
-	@Column({ nullable: false })
-	phone: number;
+  @Column({ nullable: false,type:"bigint" })
+  phone: number;
 
 	@Column({ nullable: false, type: "bigint" })
 	cpf: number;

@@ -8,11 +8,16 @@ import {
 	sendResetEmailPasswordController,
 	updateUserController,
 } from "../controllers/users/users.controllers";
+import ensureVerifyDataMiddleware from "../middlewares/ensureVerifyData.middleware";
+import {userRequestSeriallizer} from "../serializers/user.serializers"
+
+
 const useRoutes = Router();
 
-useRoutes.post("", createUserController);
 useRoutes.post("/resetPassword", sendResetEmailPasswordController);
-useRoutes.get("", ensureAuthMiddleware, listUserControler);
+useRoutes.post("", ensureVerifyDataMiddleware(userRequestSeriallizer),createUserController);
+useRoutes.get("", ensureAuthMiddleware,listUserControler);
+
 useRoutes.patch("", ensureAuthMiddleware, updateUserController);
 useRoutes.patch("/:id/address");
 useRoutes.patch("/resetPassword/:token", resetPasswordController);

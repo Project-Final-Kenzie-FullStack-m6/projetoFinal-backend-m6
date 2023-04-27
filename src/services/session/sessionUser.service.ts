@@ -9,7 +9,7 @@ import { User } from "../../entities/user.entity";
 export const createSessionService = async ({
   email,
   password,
-}: IUserLogin): Promise<string> => {
+}: IUserLogin): Promise<any> => {
   const userRepository = AppDataSource.getRepository(User);
   const user = await userRepository.findOne({
     where: { email: email },
@@ -41,5 +41,10 @@ export const createSessionService = async ({
     }
   );
 
-  return token;
+  
+  const response ={
+    token,userId:user.id
+  }
+
+  return response;
 };
