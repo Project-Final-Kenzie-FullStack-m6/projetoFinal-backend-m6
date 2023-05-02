@@ -49,17 +49,17 @@ class EmailService {
 		const email = {
 			body: {
 				name: userName,
-				intro: "You have received this email because a password reset request for your account was received.",
+				intro: "Você recebeu este e-mail porque uma solicitação de redefinição de senha para sua conta foi recebida.",
 				action: {
 					instructions:
-						"Click the button below to reset your password:",
+						"Clique no botão abaixo para redefinir sua senha:",
 					button: {
 						color: "#DC4D2F",
-						text: "Reset your password",
+						text: "Redefina sua senha",
 						link: `http://localhost:3000/resetPassword/?token=${resetToken}`,
 					},
 				},
-				outro: "If you did not request a password reset, no further action is required on your part.",
+				outro: "Se você não solicitou uma redefinição de senha, nenhuma outra ação será necessária de sua parte.",
 			},
 		};
 
@@ -67,7 +67,7 @@ class EmailService {
 
 		const emailTemplate = {
 			to: userEmail,
-			subject: "Reset password",
+			subject: "Redefinição de senha",
 			text: emailBody,
 		};
 
