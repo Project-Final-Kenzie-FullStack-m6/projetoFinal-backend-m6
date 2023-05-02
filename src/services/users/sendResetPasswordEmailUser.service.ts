@@ -1,7 +1,6 @@
 import AppDataSource from "../../data-source";
 import { User } from "../../entities/user.entity";
 import AppError from "../../errors/AppError";
-// import { randomUUID } from "node:crypto";
 import { v4 as uuidv4 } from "uuid";
 import { emailService } from "../../utils/sendEmail.utils";
 

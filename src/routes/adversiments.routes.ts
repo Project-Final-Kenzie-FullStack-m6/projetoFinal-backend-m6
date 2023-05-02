@@ -17,7 +17,7 @@ adversimentRoutes.post(
 	createAdversimentController
 );
 adversimentRoutes.get("", listAdversimentControler);
-adversimentRoutes.get("/:id");
+adversimentRoutes.get("/:id", listAdversimentControler);
 adversimentRoutes.patch(
 	"/:id",
 	ensureAuthMiddleware,
