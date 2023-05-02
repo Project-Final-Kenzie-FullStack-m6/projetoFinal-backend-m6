@@ -1,5 +1,46 @@
 {
+  "name": "ibscars",
+  "version": "1.0.0",
+  "main": "server.ts",
+  "author": "Silas Marques",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "@types/nodemailer": "^6.4.7",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^9.0.0",
+    "mailgen": "^2.0.27",
+    "nodemailer": "^6.9.1",
+    "pg": "^8.10.0",
+    "reflect-metadata": "^0.1.13",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.0",
+    "typeorm": "^0.3.12",
+    "uuid": "^9.0.0",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.0",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@types/node": "^18.15.11",
+    "@types/pg": "^8.6.6",
+    "@types/supertest": "^2.0.12",
+    "@types/uuid": "^9.0.1",
+    "sqlite3": "^5.1.6",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.3"
+  },
+  "scripts": {
+    "test": "cross-env NODE_ENV=test SECRET_KEY=chavesecreta jest --verbose --runInBand",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
+    "build": "tsc",
+    "start": "node dist/src/server.js"
   }
 }
