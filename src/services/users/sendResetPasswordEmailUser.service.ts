@@ -1,7 +1,7 @@
 import AppDataSource from "../../data-source";
 import { User } from "../../entities/user.entity";
 import AppError from "../../errors/AppError";
-import { randomUUID } from "node:crypto";
+import { v4 as uuidv4 } from "uuid";
 import { emailService } from "../../utils/sendEmail.utils";
 
 const sendResetEmailPasswordService = async (
@@ -16,7 +16,7 @@ const sendResetEmailPasswordService = async (
 		throw new AppError("user not found", 404);
 	}
 
-	const resetToken = randomUUID();
+	const resetToken = uuidv4();
 
 	await userRepository.update({ email }, { resetToken: resetToken });
 
