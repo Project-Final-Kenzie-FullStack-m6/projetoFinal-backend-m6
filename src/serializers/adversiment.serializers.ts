@@ -39,14 +39,15 @@ const adversimentResponseSerializer: SchemaOf<any> = yup.object().shape({
 			id: yup.string(),
 		})
 	),
-	fuelType: yup.string().max(10),
 	images: yup.array().of(
 		yup.object().shape({
 			imageUrl: yup.string().max(255).required(),
 		})
 	),
-	mileAge: yup.number(),
 	user: userResponse,
+	isActive: yup.boolean(),
+	mileAge: yup.number(),
+	fuelType: yup.string().max(10),
 	brand: yup.string().max(50).required(),
 	price: yup.number().required(),
 	color: yup.string().max(20).required(),
