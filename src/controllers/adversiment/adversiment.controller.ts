@@ -20,7 +20,6 @@ const createAdversimentController = async (req: Request, res: Response) => {
 
 const listAdversimentControler = async (req: Request, res: Response) => {
 	const id = req.params.id;
-	console.log(id);
 	const listAdversiment = await listAdversimentService(id);
 	return res.status(200).json(listAdversiment);
 };

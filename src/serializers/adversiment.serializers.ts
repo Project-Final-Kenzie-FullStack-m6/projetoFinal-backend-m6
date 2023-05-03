@@ -35,7 +35,9 @@ const adversimentSerializer: SchemaOf<any> = yup.object().shape({
 const adversimentResponseSerializer: SchemaOf<any> = yup.object().shape({
 	comments: yup.array().of(
 		yup.object().shape({
+			createdAt: yup.date(),
 			content: yup.string(),
+			userName: yup.string(),
 			id: yup.string(),
 		})
 	),

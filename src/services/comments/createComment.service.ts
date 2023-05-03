@@ -9,8 +9,8 @@ import { commentResponseSeriallizer } from "../../serializers/comments.serialize
 const createCommentService = async (commentData: ICommentRequest) => {
 	const userRepository = AppDataSource.getRepository(User);
 	const AdversimentRepository = AppDataSource.getRepository(Advertisement);
-
-	const findUser = await userRepository.findOneBy({ id: commentData.userId });
+	const findUser = await userRepository.findOneBy({ id: commentData.user });
+	console.log(findUser);
 
 	if (!findUser) {
 		throw new AppError("User not found", 404);

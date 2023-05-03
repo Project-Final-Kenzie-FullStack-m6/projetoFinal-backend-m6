@@ -14,7 +14,7 @@ const createCommentController = async (
 	const advertisementId = request.params.id;
 
 	commentData.user = userId;
-	commentData.advertisement = advertisementId;
+	commentData.advertisementId = advertisementId;
 
 	const createComment = await createCommentService(commentData);
 	return response.status(201).json(createComment);
