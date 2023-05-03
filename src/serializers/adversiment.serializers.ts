@@ -37,7 +37,7 @@ const adversimentResponseSerializer: SchemaOf<any> = yup.object().shape({
 		yup.object().shape({
 			createdAt: yup.date(),
 			content: yup.string(),
-			userName: yup.string(),
+			name: yup.string(),
 			id: yup.string(),
 		})
 	),
