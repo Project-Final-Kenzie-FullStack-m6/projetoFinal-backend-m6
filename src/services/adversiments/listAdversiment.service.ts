@@ -80,7 +80,7 @@ const listAdversimentService = async (id: string) => {
 			const validatedComments = obj.comments.map((comment) => {
 				return {
 					...comment,
-					userName: userCommentName,
+					name: userCommentName,
 				};
 			});
 			return adversimentResponseSerializer.validate(
@@ -118,7 +118,7 @@ const listAdversimentService = async (id: string) => {
 		const validatedComments = obj.comments.map((comment) => {
 			return {
 				...comment,
-				userName: userCommentName,
+				name: userCommentName,
 			};
 		});
 		return adversimentResponseSerializer.validate(
