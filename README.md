@@ -1,18 +1,20 @@
 # Desafio 1
 
-To start this project, it is necessary to install the dependencies, which will be used in the tests. To install you need to open a Integrated Terminal of the folder, then use the command below to install such dependencies:
+# Desafio 1
+
+Para iniciar este projeto, é necessário instalar as dependências, que serão utilizadas nos testes. Para instalar você precisa abrir um Terminal Integrado da pasta, então utilize o comando abaixo para instalar tais dependências:
 
 ````
 yarn install or npm install
 ````
 <br>
 
-With that done, to run your application you need to do the following steps, set your .env using the .env.exemple as exemple. After run the following code on your backend terminal "yarn typeorm migration:run -d src/data-source", after that done you just need to use the following command.
+Feito isso, para rodar sua aplicação você precisa seguir os seguintes passos, configure seu .env usando o .env.exemple como exemplo. Depois de executar o seguinte código em seu terminal de back-end "yarn typeorm migration: run -d src/data-source", depois disso, você só precisa usar o seguinte comando.
 ````
 yarn dev
 ````
 <br> 
-# **About the routes**
+# **Sobre as rotas**
 
 
 ````
