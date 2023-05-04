@@ -1,13 +1,13 @@
 # Desafio 1
 
-To start this project, it is necessary to install the dependencies, which will be used in the tests. To install frontend and backend dependences, you need to open a Integrated Terminal of each folder, one related to backend and the other related to the frontend. Then use the command below to install such dependencies:
+To start this project, it is necessary to install the dependencies, which will be used in the tests. To install you need to open a Integrated Terminal of the folder, then use the command below to install such dependencies:
 
 ````
 yarn install or npm install
 ````
 <br>
 
-With that done, to run your application you need to do the following steps, set your .env using the .env.exemple as exemple. After run the following code on your backend terminal "yarn typeorm migration:run -d src/data-source", after that done you just need to use the following command on both terminals, backend and frontend
+With that done, to run your application you need to do the following steps, set your .env using the .env.exemple as exemple. After run the following code on your backend terminal "yarn typeorm migration:run -d src/data-source", after that done you just need to use the following command.
 ````
 yarn dev
 ````
@@ -17,45 +17,71 @@ yarn dev
 
 ````
 Route User :
-POST: /user - {Parameters: name(tipo string), email(tipo string), phoneNumber(tipo number), password(tipo string)}
-POST: /user/login - {Parameters: email(tipo string), password(tipo string)}
-GET: /user/ - {Authorization Token necessary to bring the information of the logged in user}
-PATCH: /user/:id - {Parameters: name(tipo string), email(tipo string), phoneNumber(tipo number), password(tipo string))}{Authorization Token necessary}
-DELETE: /user/:id - {Authorization Token necessary}
+POST: /users - {Parameters: name(tipo string), email(tipo string), phoneNumber(tipo number), birthDate(tipo string, passando formato DD/MM/AAAA), password(tipo string), cpf(tipo number), isSeller(tipo boolean), description(tipo string), address(tipo objeto, com os campos a seguir), cep(tipo number), state(tipo string com apenas as iniciais do estado. Exemplo: SP), city(tipo string), street(tipo string), number(tipo number)}
+
+POST: /users/resetPassword - {Parameters: email(tipo string)}
+
+GET: /users/ - {Token de autorização necessário para trazer as informações do usuário logado}
+
+PATCH: /users/ - {Todos os campos a seguir são opcionais. Parameters: name(tipo string), email(tipo string), phoneNumber(tipo number), birthDate(tipo string, passando formato DD/MM/AAAA), password(tipo string), cpf(tipo number), isSeller(tipo boolean), description(tipo string), address(tipo objeto, com os campos a seguir), cep(tipo number), state(tipo string com apenas as iniciais do estado. Exemplo: SP), city(tipo string), street(tipo string), number(tipo number)}{Token de autorização necessário}
+
+PATCH: /users/resetPassword/:resetToken - {Parameters: password(tipo number)}
+
+DELETE: /user/ - {Token de autorização necessário}
 ````
 ````
-Route Contact :
-POST: /contact/:id - {URL Parameters => :id(The ":id" parameter is the id of the person you want to register as a contact), Authorization token is the person's token
-which will register a contact}
-GET: /contact/:id - {URL Parameters => :id(The ":id" parameter is the id of the person you want to check the contacts)}{Authorization Token necessary}
-DELETE: /user/:id/:contactId - {URL Parameters => :id(The ":id" parameter is the id of the user that wants to delete a contact) :contactId(the :contactId is the id of the contact the user wants to delete)}{Authorization Token necessary}
+Route Session :
+POST: /login - {Parameters: email(tipo string), password(tipo string)}
+````  
 ````
+Route Advertisement :
+POST: /adversiments/ - {Parameters: brand(tipo string), model(tipo string), age(tipo number), fuelType(tipo string), mileage(tipo number), price(tipo number), color(tipo string), description(tipo string), fipe(tipo number), images(tipo objeto com os seguintes parametros), imagem(tipo array com o seguinte parametro), imageUrl(tipo string)}{Token de autorização necessário}
+
+GET: /adversiments/- {Bring all advertisements}
+
+GET: /adversiments/:id - {URL Parameters => :id(O parâmetro ":id" é o id do anúncio que você está tentando verificar)}
+
+PATCH: /adversiments/:id - {URL Parameters => :id(O parâmetro ":id" é o id do anúncio que você está tentando atualizar)}{Todos os campos a seguir são opcionais. Parameters: brand(tipo string), model(tipo string), age(tipo number), fuelType(tipo string), mileage(tipo number), price(tipo number), color(tipo string), description(tipo string), fipe(tipo number), images(tipo objeto com os seguintes parametros), imagem(tipo array com o seguinte parametro), imageUrl(tipo string)}{Token de autorização necessário}
+
+DELETE: //adversiments/:id - {URL Parameters => :id(O parâmetro ":id" é o id do anúncio que você está tentando deletar)}{Authorization Token necessary}
+````
+````
+Route Session :
+POST: /comments/:id - {URL Parameters => :id(O parâmetro ":id" é o id do anúncio que você está tentando comentar)}{Parameters: content(tipo string)}{Token de autorização necessário}
+
+GET: /comments/:id - {URL Parameters => :id(O parâmetro ":id" é o id do anúncio que você está tentando checar)}
+
+PATCH: /comments/:id - {URL Parameters => :id(O parâmetro ":id" é o id do anúncio que você está tentando atualizar)}{Parameters: content(tipo string)}{Token de autorização necessário}
+
+DELETE: /comments/:id - {URL Parameters => :id(O parâmetro ":id" é o id do anúncio que você está tentando atualizar)}{Token de autorização necessário}
+````  
 <br>
 
-# **About the tests**
+# **Sobre os testes**
 
-This application has tests, which will be used to validate if all business rules were applied correctly.
+Esta aplicação possui testes, que serão utilizados para validar se todas as regras de negócio foram aplicadas corretamente.
 
-The tests are located in `src/__tests__`.
+Os testes estão localizados em `src/__tests__`.
 
-In the `integration` subfolder are the tests.
+Na subpasta `integration` estão os testes.
 
-In the `jest.config.json` file are some necessary settings for the tests to run.
+No arquivo `jest.config.json` estão algumas configurações necessárias para a execução dos testes.
 
-**`Do not alter any of these files in any way.`** This could compromise the integrity of the tests.
+**`Não altere nenhum desses arquivos de forma alguma.`** Isso pode comprometer a integridade dos testes.
 
-Also, don't change the `test` script located in `package.json`. This will be used to run the tests.
+Além disso, não altere o script `test` localizado em `package.json`. Isso será usado para executar os testes.
+
 
 <br>
 
 
-# **Running the tests** 
+# **Executando os testes** 
 
-To run the tests it is necessary that in your terminal, you are inside the project directory.
+Para rodar os testes é necessário que em seu terminal você esteja dentro do diretório do projeto.
 
-Once you are in the terminal and within the correct path, you can use the following commands:
+Uma vez no terminal e dentro do caminho correto, você pode usar os seguintes comandos:
 
-### Run all tests
+### Executar todos os testes
 ````
 yarn test
 ````
@@ -64,10 +90,10 @@ yarn test
 <br>
 
 
-**In case you want to check all test execution options, visit the [Official Jest Documentation](https://jestjs.io/docs/cli)**
+**Caso queira verificar todas as opções de execução do teste, visite a [Documentação oficial do Jest](https://jestjs.io/docs/cli)**
 
-After running one of the commands, a log will appear in your terminal, containing the test execution information.
+Após executar um dos comandos, um log aparecerá em seu terminal, contendo as informações de execução do teste.
 
-**Note:** The test may take a few seconds to complete. The larger the test, the more time it takes to run.
+**Observação:** O teste pode levar alguns segundos para ser concluído. Quanto maior o teste, mais tempo leva para ser executado.
 
 #
