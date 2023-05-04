@@ -1,7 +1,5 @@
 # Desafio 1
 
-# Desafio 1
-
 Para iniciar este projeto, é necessário instalar as dependências, que serão utilizadas nos testes. Para instalar você precisa abrir um Terminal Integrado da pasta, então utilize o comando abaixo para instalar tais dependências:
 
 ````
