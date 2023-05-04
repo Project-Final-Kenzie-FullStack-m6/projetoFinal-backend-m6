@@ -1,20 +1,11 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
 import {
-	IAdversimentRequest,
-	IAdversimentResponse,
 	IAdversimentUpdate,
-	IImagemResponse,
 } from "../interfaces/adversiments/adversiments.interface";
-import { userRequestSeriallizer } from "./user.serializers";
-import { userResponse } from "./user.serializers";
 
-// const schema:SchemaOf<IImagemResponse> = yup.object().shape({
-//     imageUrl: yup.string().max(255).required(),
-// })
 
 const adversimentSerializer: SchemaOf<any> = yup.object().shape({
-	// comments: yup.object().notRequired(),
 	fuelType: yup.string().max(10).required(),
 	images: yup.array().of(
 		yup.object().shape({
@@ -32,21 +23,61 @@ const adversimentSerializer: SchemaOf<any> = yup.object().shape({
 	id: yup.string().uuid(),
 });
 
-const adversimentResponseSerializer: SchemaOf<any> = yup.object().shape({
-	comments: yup.array().of(
-		yup.object().shape({
-			content: yup.string(),
-			id: yup.string(),
-		})
-	),
-	fuelType: yup.string().max(10),
+const adversimentsResponseSerializer: SchemaOf<any> = yup.object().shape({
 	images: yup.array().of(
 		yup.object().shape({
 			imageUrl: yup.string().max(255).required(),
 		})
 	),
+	user: yup.object().shape({
+		description: yup.string(),
+		phone: yup.number(),
+		email: yup.string().email(),
+		name: yup.string(),
+		id: yup.string(),
+	}),
+	isActive: yup.boolean(),
 	mileAge: yup.number(),
-	user: userResponse,
+	fuelType: yup.string().max(10),
+	brand: yup.string().max(50).required(),
+	price: yup.number().required(),
+	color: yup.string().max(20).required(),
+	model: yup.string().max(50).required(),
+	fipe: yup.number().required(),
+	description: yup.string().max(255).required(),
+	age: yup.number().required(),
+	id: yup.string().uuid(),
+});
+
+const adversimentResponseSerializer: SchemaOf<any> = yup.object().shape({
+	comments: yup.array().of(
+		yup.object().shape({
+			createdAt: yup.date(),
+			content: yup.string(),
+			user: yup.object().shape({
+				name: yup.string(),
+				id: yup.string(),}),
+			id: yup.string(),
+		})
+	),
+	images: yup.array().of(
+		yup.object().shape({
+			imageUrl: yup.string().max(255).required(),
+		})
+	),
+	user: yup.object().shape({
+		isActive: yup.boolean(),
+		isSeller: yup.boolean(),
+		description: yup.string(),
+		birthDate: yup.date(),
+		phone: yup.number(),
+		cpf: yup.number(),
+		email: yup.string().email(),
+		name: yup.string(),
+		id: yup.string(),
+	}),
+	mileAge: yup.number(),
+	fuelType: yup.string().max(10),
 	brand: yup.string().max(50).required(),
 	price: yup.number().required(),
 	color: yup.string().max(20).required(),
@@ -80,5 +111,6 @@ const adversimentUpdateSerializer: SchemaOf<IAdversimentUpdate> = yup
 export {
 	adversimentSerializer,
 	adversimentUpdateSerializer,
-	adversimentResponseSerializer,
+	adversimentsResponseSerializer,
+	adversimentResponseSerializer
 };

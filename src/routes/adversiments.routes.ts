@@ -4,6 +4,7 @@ import {
 	listAdversimentControler,
 	deleteAdversimentController,
 	updateAdversimentController,
+	listAdversimentsControler,
 } from "../controllers/adversiment/adversiment.controller";
 import { ensureAuthMiddleware } from "../middlewares/ensureAuth.middleware";
 import ensureVerifyIsSellerMiddleware from "../middlewares/ensureVerifyIsSeller.middleware";
@@ -16,7 +17,7 @@ adversimentRoutes.post(
 	ensureVerifyIsSellerMiddleware,
 	createAdversimentController
 );
-adversimentRoutes.get("", listAdversimentControler);
+adversimentRoutes.get("", listAdversimentsControler);
 adversimentRoutes.get("/:id", listAdversimentControler);
 adversimentRoutes.patch(
 	"/:id",

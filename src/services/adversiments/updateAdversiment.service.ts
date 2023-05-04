@@ -5,53 +5,56 @@ import { Advertisement } from "../../entities/advertisements.entity";
 import { Image } from "../../entities/image.entity";
 
 const updateAdversimentService = async (
-  idAdversiment: string,
-  adversimentUpdateData: IAdversimentUpdate
+	idAdversiment: string,
+	adversimentUpdateData: IAdversimentUpdate
 ) => {
-  const AdversimentRepository = AppDataSource.getRepository(Advertisement);
-  const imageRepository = AppDataSource.getRepository(Image);
+	const advertisementRepository = AppDataSource.getRepository(Advertisement);
+	const imageRepository = AppDataSource.getRepository(Image);
 
-  if (adversimentUpdateData.images == undefined) {
-    adversimentUpdateData.images = [];
-  }
-  let images = adversimentUpdateData.images;
-  delete adversimentUpdateData.images;
+	const newImages = adversimentUpdateData.images;
+	delete adversimentUpdateData.images;
 
-  const adversiment = await AppDataSource.createQueryBuilder()
-    .from(Advertisement, "adversiments")
-    .select("adversiments")
-    .where("adversiments.id = :id", { id: idAdversiment })
-    .leftJoinAndSelect("adversiments.images", "images")
-    .getOne();
+	const findAdvertisement = await advertisementRepository.findOneBy({
+		id: idAdversiment,
+	});
 
-  if (!adversiment) {
-    throw new AppError("adversiment not found ", 404);
-  }
+	if (!findAdvertisement) {
+		throw new Error("Advertisement not found");
+	}
 
-  const imagensAntigas = adversiment.images;
+	await advertisementRepository.update(idAdversiment, adversimentUpdateData);
 
-  const updateAdversiment = AdversimentRepository.create({
-    ...adversiment,
-    ...adversimentUpdateData,
-  });
-  await AdversimentRepository.save(updateAdversiment);
+	const existingImages = await imageRepository.find({
+		where: { advertisement: { id: idAdversiment } },
+	});
 
-  if (images.length > 0) {
-    const imagensAtualizadas = await imageRepository.save(
-      images.map((image) => ({
-        ...image,
-        adversiment: updateAdversiment,
-      }))
-    );
-    const imagensRemovidas = await imageRepository.remove(imagensAntigas);
-  }
+	const existingImageIds = existingImages.map((image) => image.id);
+	const newImageIds = newImages.map((image) => image.id);
+	const imagesToDelete = existingImageIds.filter(
+		(id) => !newImageIds.includes(id)
+	);
 
-  return await AppDataSource.createQueryBuilder()
-    .from(Advertisement, "adversiments")
-    .select("adversiments")
-    .where("adversiments.id = :id", { id: idAdversiment })
-    .leftJoinAndSelect("adversiments.images", "images")
-    .getOne();
+	if (imagesToDelete.length > 0) {
+		await imageRepository.delete(imagesToDelete);
+	}
+
+	const adversiment = await advertisementRepository.findOne({
+		where: { id: idAdversiment },
+	});
+
+	await imageRepository.save(
+		newImages.map((imagem) => ({
+			...imagem,
+			advertisement: adversiment,
+		}))
+	);
+
+	return await AppDataSource.createQueryBuilder()
+		.from(Advertisement, "adversiments")
+		.select("adversiments")
+		.where("adversiments.id = :id", { id: idAdversiment })
+		.leftJoinAndSelect("adversiments.images", "images")
+		.getOne();
 };
 
 export default updateAdversimentService;

@@ -5,7 +5,7 @@ import { IAdversimentRequest } from "../adversiments/adversiments.interface";
 
 export interface ICommentRequest {
 	content: string;
-	userId: string;
+	user: string;
 	advertisementId: string;
 }
 

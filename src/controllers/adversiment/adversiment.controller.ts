@@ -9,6 +9,7 @@ import createAdversimentService from "../../services/adversiments/createAdversim
 import listAdversimentService from "../../services/adversiments/listAdversiment.service";
 import deleteAdversimentService from "../../services/adversiments/deleteAdversiment.service";
 import updateAdversimentService from "../../services/adversiments/updateAdversiment.service";
+import retrieveAdversimentService from "../../services/adversiments/retrieveAdversiment.service";
 
 const createAdversimentController = async (req: Request, res: Response) => {
 	const adversimentData = req.body;
@@ -18,10 +19,13 @@ const createAdversimentController = async (req: Request, res: Response) => {
 	return res.status(201).json(createAdversiment);
 };
 
+const listAdversimentsControler = async (req: Request, res: Response) => {
+	const listAdversiment = await listAdversimentService();
+	return res.status(200).json(listAdversiment);
+};
 const listAdversimentControler = async (req: Request, res: Response) => {
 	const id = req.params.id;
-	console.log(id);
-	const listAdversiment = await listAdversimentService(id);
+	const listAdversiment = await retrieveAdversimentService(id);
 	return res.status(200).json(listAdversiment);
 };
 
@@ -46,4 +50,5 @@ export {
 	listAdversimentControler,
 	deleteAdversimentController,
 	updateAdversimentController,
+	listAdversimentsControler
 };
