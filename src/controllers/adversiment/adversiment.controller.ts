@@ -20,7 +20,10 @@ const createAdversimentController = async (req: Request, res: Response) => {
 };
 
 const listAdversimentsControler = async (req: Request, res: Response) => {
-	const listAdversiment = await listAdversimentService();
+	const page: number = Number(req.query.page) || 1;
+
+  const limit: number = Number(req.query.limit) || 10;
+	const listAdversiment = await listAdversimentService(limit,page);
 	return res.status(200).json(listAdversiment);
 };
 const listAdversimentControler = async (req: Request, res: Response) => {
