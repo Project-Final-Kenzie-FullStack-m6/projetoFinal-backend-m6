@@ -23,31 +23,34 @@ const adversimentSerializer: SchemaOf<any> = yup.object().shape({
 	id: yup.string().uuid(),
 });
 
-const adversimentsResponseSerializer: SchemaOf<any> = yup.object().shape({
-	images: yup.array().of(
-		yup.object().shape({
-			imageUrl: yup.string().max(255).required(),
-		})
-	),
-	user: yup.object().shape({
-		description: yup.string(),
-		phone: yup.number(),
-		email: yup.string().email(),
-		name: yup.string(),
-		id: yup.string(),
-	}),
-	isActive: yup.boolean(),
-	mileAge: yup.number(),
-	fuelType: yup.string().max(10),
-	brand: yup.string().max(50).required(),
-	price: yup.number().required(),
-	color: yup.string().max(20).required(),
-	model: yup.string().max(50).required(),
-	fipe: yup.number().required(),
-	description: yup.string().max(255).required(),
-	age: yup.number().required(),
-	id: yup.string().uuid(),
-});
+const adversimentsResponseSerializer: SchemaOf<any> = yup.array().of(
+	yup.object().shape({
+		images: yup.array().of(
+			yup.object().shape({
+				imageUrl: yup.string().max(255).required(),
+			})
+		),
+		user: yup.object().shape({
+			description: yup.string(),
+			phone: yup.number(),
+			email: yup.string().email(),
+			name: yup.string(),
+			id: yup.string(),
+		}),
+		isActive: yup.boolean(),
+		mileAge: yup.number(),
+		fuelType: yup.string().max(10),
+		brand: yup.string().max(50).required(),
+		price: yup.number().required(),
+		color: yup.string().max(20).required(),
+		model: yup.string().max(50).required(),
+		fipe: yup.number().required(),
+		description: yup.string().max(255).required(),
+		age: yup.number().required(),
+		id: yup.string().uuid(),
+	})
+
+)
 
 const adversimentResponseSerializer: SchemaOf<any> = yup.object().shape({
 	comments: yup.array().of(
