@@ -56,7 +56,7 @@ class EmailService {
 					button: {
 						color: "#DC4D2F",
 						text: "Redefina sua senha",
-						link: `http://localhost:3000/resetPassword/?token=${resetToken}`,
+						link: `https://projeto-final-front-end-m6-gaoolt291-m6team.vercel.app/resetPassword/?token=${resetToken}`,
 					},
 				},
 				outro: "Se você não solicitou uma redefinição de senha, nenhuma outra ação será necessária de sua parte.",
